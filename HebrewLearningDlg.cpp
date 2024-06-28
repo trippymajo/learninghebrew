@@ -154,6 +154,7 @@ BEGIN_MESSAGE_MAP(CHebrewLearningDlg, CDialogEx)
 	ON_BN_CLICKED(ID_CHECK, &CHebrewLearningDlg::OnBnClickedCheck)
 	ON_BN_CLICKED(IDC_SKIP, &CHebrewLearningDlg::OnBnClickedSkip)
 	ON_BN_CLICKED(IDC_OPEN, &CHebrewLearningDlg::OnBnClickedOpen)
+	ON_BN_CLICKED(ID_EXIT, &CHebrewLearningDlg::OnBnClickedExit)
 END_MESSAGE_MAP()
 
 
@@ -231,7 +232,9 @@ void CHebrewLearningDlg::OnBnClickedCheck()
 	UpdateData(TRUE);
 	CString strRightAnswer;
 	strRightAnswer = bTranslation ? std::get<0>(m_vecDictionary[m_iCurPos]) : std::get<2>(m_vecDictionary[m_iCurPos]);
-	if (strAnswer.MakeLower() == strRightAnswer.MakeLower())
+
+	//UTF-8 problem CaseSensetive comparision
+	if (strAnswer == strRightAnswer)
 	{
 		OnBnClickedSkip();
 		strResult = L"True!";
@@ -264,4 +267,10 @@ void CHebrewLearningDlg::OnBnClickedOpen()
 {
 	GetDictionary();
 	UpdateData(FALSE);
+}
+
+
+void CHebrewLearningDlg::OnBnClickedExit()
+{
+	PostQuitMessage(0);
 }

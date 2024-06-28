@@ -54,4 +54,5 @@ public:
 	afx_msg void OnBnClickedCheck();
 	afx_msg void OnBnClickedSkip();
 	afx_msg void OnBnClickedOpen();
+	afx_msg void OnBnClickedExit();
 };
