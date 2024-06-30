@@ -104,6 +104,8 @@ void CHebrewLearningDlg::GetDictionary()
 				CStringA strLineA;
 				while (GetLine(file, strLineA))
 				{
+					if (strLineA[0] == L'\0')
+						continue;
 					strLine = CA2WEX<>(strLineA, CP_UTF8);
 					ParseLine(strLine);
 				}
